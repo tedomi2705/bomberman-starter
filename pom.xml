@@ -68,7 +68,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>uet.oop.bomberman.BombermanGame</mainClass>
+                            <mainClass>bomberman/uet.oop.bomberman.BombermanGame</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -81,7 +81,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>uet.oop.bomberman.BombermanGame</mainClass>
+                            <mainClass>bomberman/uet.oop.bomberman.BombermanGame</mainClass>
                         </configuration>
                     </execution>
                 </executions>
