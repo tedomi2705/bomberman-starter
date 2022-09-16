@@ -5,5 +5,5 @@ module bomberman {
     requires java.desktop;
     requires transitive javafx.graphics;
 
-    exports uet.oop.bomberman;
+    exports com.tedomi2705.bomberman;
 }
