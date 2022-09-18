@@ -2,18 +2,18 @@ package com.tedomi2705.bomberman;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
-import com.tedomi2705.bomberman.entities.Bomber;
-import com.tedomi2705.bomberman.entities.Entity;
-import com.tedomi2705.bomberman.entities.Grass;
-import com.tedomi2705.bomberman.entities.Wall;
+import com.tedomi2705.bomberman.entities.*;
 import com.tedomi2705.bomberman.graphics.Sprite;
+import static com.tedomi2705.bomberman.entities.Movable.DIRECTION.*;
 
 public class BombermanGame extends Application {
 
@@ -43,6 +43,7 @@ public class BombermanGame extends Application {
         // Tao scene
         Scene scene = new Scene(root);
 
+
         // Them scene vao stage
         stage.setScene(scene);
         stage.show();
@@ -58,8 +59,45 @@ public class BombermanGame extends Application {
 
         createMap();
 
-        Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        entities.add(bomberman);
+        Bomber bomber = new Bomber(1, 1, Sprite.player_right.getFxImage());
+        // Handle input
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case LEFT -> {
+                        bomber.setMoving(true);
+                        bomber.setDirection(LEFT);
+                    }
+                    case RIGHT -> {
+                        bomber.setMoving(true);
+                        bomber.setDirection(RIGHT);
+                    }
+                    case UP -> {
+                        bomber.setMoving(true);
+                        bomber.setDirection(UP);
+                    }
+                    case DOWN -> {
+                        bomber.setMoving(true);
+                        bomber.setDirection(DOWN);
+                    }
+                    case SPACE -> {
+                        // bomber.placeBomb();
+                    }
+                    case ESCAPE -> {
+                        System.exit(0);
+                    }
+                    default -> throw new IllegalArgumentException("Unexpected value: " + event.getCode());
+                }
+            }
+        });
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                bomber.setMoving(false);
+            }
+        });
+        entities.add(bomber);
     }
 
     public void createMap() {
