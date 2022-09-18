@@ -12,4 +12,10 @@ public class Wall extends Entity {
     public void update() {
 
     }
+
+    @Override
+    public void updateImage() {
+        // TODO Auto-generated method stub
+
+    }
 }
