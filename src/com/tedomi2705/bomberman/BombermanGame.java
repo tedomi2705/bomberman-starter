@@ -9,11 +9,11 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import java.util.ArrayList;
-import java.util.List;
 import com.tedomi2705.bomberman.entities.*;
 import com.tedomi2705.bomberman.graphics.Sprite;
 import static com.tedomi2705.bomberman.entities.Movable.DIRECTION.*;
+import static com.tedomi2705.bomberman.EntitiesList.bomber;
+import static com.tedomi2705.bomberman.EntitiesList.entities;
 
 public class BombermanGame extends Application {
 
@@ -22,8 +22,6 @@ public class BombermanGame extends Application {
 
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<Entity> entities = new ArrayList<>();
-    private List<Entity> stillObjects = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -33,7 +31,8 @@ public class BombermanGame extends Application {
     @Override
     public void start(Stage stage) {
         // Tao Canvas
-        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
+        Map.readMap();
+        canvas = new Canvas(Sprite.SCALED_SIZE * Map.HEIGHT, Sprite.SCALED_SIZE * Map.WIDTH);
         gc = canvas.getGraphicsContext2D();
 
         // Tao root container
@@ -57,9 +56,8 @@ public class BombermanGame extends Application {
         };
         timer.start();
 
-        createMap();
 
-        Bomber bomber = new Bomber(1, 1, Sprite.player_right.getFxImage());
+        bomber = new Bomber(1, 1, Sprite.player_right.getFxImage());
         // Handle input
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -87,7 +85,9 @@ public class BombermanGame extends Application {
                     case ESCAPE -> {
                         System.exit(0);
                     }
-                    default -> throw new IllegalArgumentException("Unexpected value: " + event.getCode());
+                    default -> {
+                        // Do nothing;
+                    }
                 }
             }
         });
@@ -100,27 +100,11 @@ public class BombermanGame extends Application {
         entities.add(bomber);
     }
 
-    public void createMap() {
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                Entity object;
-                if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j, Sprite.wall.getFxImage());
-                } else {
-                    object = new Grass(i, j, Sprite.grass.getFxImage());
-                }
-                stillObjects.add(object);
-            }
-        }
-    }
-
     public void update() {
-        entities.forEach(Entity::update);
+        EntitiesList.update();
     }
 
     public void render() {
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        stillObjects.forEach(g -> g.render(gc));
-        entities.forEach(g -> g.render(gc));
+        EntitiesList.render(gc, canvas);
     }
 }
