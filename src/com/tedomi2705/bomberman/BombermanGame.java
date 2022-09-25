@@ -61,40 +61,44 @@ public class BombermanGame extends Application {
         // Handle input
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
-            public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case LEFT -> {
-                        bomber.setMoving(true);
-                        bomber.setDirection(LEFT);
-                    }
-                    case RIGHT -> {
-                        bomber.setMoving(true);
-                        bomber.setDirection(RIGHT);
-                    }
-                    case UP -> {
-                        bomber.setMoving(true);
-                        bomber.setDirection(UP);
-                    }
-                    case DOWN -> {
-                        bomber.setMoving(true);
-                        bomber.setDirection(DOWN);
-                    }
-                    case SPACE -> {
-                        // bomber.placeBomb();
-                    }
-                    case ESCAPE -> {
-                        System.exit(0);
-                    }
-                    default -> {
-                        // Do nothing;
-                    }
+            public void handle(KeyEvent event){
+                if (event.getCode().toString().equals("RIGHT")) {
+                    bomber.setRightPressed(true);
                 }
+                if (event.getCode().toString().equals("LEFT")) {
+                    bomber.setLeftPressed(true);
+                }
+                if (event.getCode().toString().equals("UP")) {
+                    bomber.setUpPressed(true);
+                }
+                if (event.getCode().toString().equals("DOWN")) {
+                    bomber.setDownPressed(true);
+                }
+                if (event.getCode().toString().equals("SPACE")) {
+                    bomber.setSpacePressed(true);
+                }
+
             }
         });
         scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                bomber.setMoving(false);
+                if (event.getCode().toString().equals("RIGHT")) {
+                    bomber.setRightPressed(false);
+                }
+                if (event.getCode().toString().equals("LEFT")) {
+                    bomber.setLeftPressed(false);
+                }
+                if (event.getCode().toString().equals("UP")) {
+                    bomber.setUpPressed(false);
+                }
+                if (event.getCode().toString().equals("DOWN")) {
+                    bomber.setDownPressed(false);
+                }
+                if (event.getCode().toString().equals("SPACE")) {
+                    bomber.setSpacePressed(false);
+                }
+                
             }
         });
         entities.add(bomber);

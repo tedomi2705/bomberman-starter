@@ -10,7 +10,7 @@ public abstract class Movable extends Entity {
     }
 
     public static enum DIRECTION {
-        UP, DOWN, LEFT, RIGHT, STOP
+        UP, DOWN, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT, STOP
     };
 
     protected int speed;
