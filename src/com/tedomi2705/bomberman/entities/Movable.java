@@ -1,17 +1,14 @@
 package com.tedomi2705.bomberman.entities;
 
+import com.tedomi2705.bomberman.Map;
 import javafx.scene.image.Image;
 
 public abstract class Movable extends Entity {
-    public Movable(int xUnit, int yUnit, Image img) {
-        super(xUnit, yUnit, img);
-        direction = DIRECTION.STOP;
-        speed = 2;
-    }
-
     public static enum DIRECTION {
         UP, DOWN, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT, STOP
-    };
+    }
+
+    public final static int MAX_STEP = 0xBADC0DE;;
 
     protected int speed;
     protected boolean isMoving;
@@ -19,29 +16,33 @@ public abstract class Movable extends Entity {
 
     protected int animationStep;
 
-    public final static int MAX_STEP = 0xBADC0DE;
+    public Movable(int xUnit, int yUnit, Image img) {
+        super(xUnit, yUnit, img);
+        direction = DIRECTION.STOP;
+        speed = 2;
+    }
 
     public void moveLeft() {
-        if (!isMoving())
+        if (!isMoving() || !moveable(x - speed, y))
             return;
         this.setX(x - speed);
     }
 
     public void moveRight() {
-        if (!isMoving())
+        if (!isMoving() || !moveable(x + speed, y))
             return;
         this.setX(x + speed);
     }
 
     public void moveUp() {
-        if (!isMoving())
+        if (!isMoving() || !moveable(x, y - speed))
             return;
         this.setY(y - speed);
     }
 
 
     public void moveDown() {
-        if (!isMoving())
+        if (!isMoving() || !moveable(x, y + speed))
             return;
         this.setY(y + speed);
     }
@@ -84,5 +85,9 @@ public abstract class Movable extends Entity {
         } else {
             this.animationStep = this.animationStep + 1;
         }
+    }
+
+    protected boolean moveable(int x, int y) {
+        return Map.moveAble(x, y);
     }
 }
