@@ -6,4 +6,5 @@ module bomberman {
     requires transitive javafx.graphics;
 
     exports com.tedomi2705.bomberman;
+    exports com.tedomi2705.bomberman.entities.abstracts;
 }
