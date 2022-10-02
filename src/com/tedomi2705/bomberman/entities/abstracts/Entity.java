@@ -1,4 +1,4 @@
-package com.tedomi2705.bomberman.entities;
+package com.tedomi2705.bomberman.entities.abstracts;
 
 import com.tedomi2705.bomberman.graphics.Sprite;
 import javafx.scene.canvas.GraphicsContext;

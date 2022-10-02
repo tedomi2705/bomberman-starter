@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import com.tedomi2705.bomberman.entities.*;
+import com.tedomi2705.bomberman.entities.abstracts.Entity;
+import com.tedomi2705.bomberman.entities.character.Bomber;
+import com.tedomi2705.bomberman.entities.enemies.Enemy1;
+import com.tedomi2705.bomberman.entities.still.Brick;
+import com.tedomi2705.bomberman.entities.still.Grass;
+import com.tedomi2705.bomberman.entities.still.Wall;
 import com.tedomi2705.bomberman.graphics.Sprite;
 import static com.tedomi2705.bomberman.EntitiesList.*;
 

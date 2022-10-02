@@ -1,5 +1,6 @@
-package com.tedomi2705.bomberman.entities;
+package com.tedomi2705.bomberman.entities.enemies;
 
+import com.tedomi2705.bomberman.entities.abstracts.Movable;
 import javafx.scene.image.Image;
 
 public class Enemy1 extends Movable {

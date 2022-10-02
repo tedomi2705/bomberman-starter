@@ -1,5 +1,6 @@
-package com.tedomi2705.bomberman.entities;
+package com.tedomi2705.bomberman.entities.still;
 
+import com.tedomi2705.bomberman.entities.abstracts.Entity;
 import javafx.scene.image.Image;
 
 public class Grass extends Entity {

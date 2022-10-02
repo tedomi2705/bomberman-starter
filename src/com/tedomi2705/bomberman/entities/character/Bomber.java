@@ -1,6 +1,8 @@
-package com.tedomi2705.bomberman.entities;
+package com.tedomi2705.bomberman.entities.character;
 
-import static com.tedomi2705.bomberman.entities.Movable.DIRECTION.*;
+import static com.tedomi2705.bomberman.entities.abstracts.Movable.DIRECTION.*;
+import com.tedomi2705.bomberman.entities.abstracts.Movable;
+import com.tedomi2705.bomberman.entities.abstracts.Movable.DIRECTION;
 import com.tedomi2705.bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 

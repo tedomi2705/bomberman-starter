@@ -9,9 +9,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import static com.tedomi2705.bomberman.entities.abstracts.Movable.DIRECTION.*;
 import com.tedomi2705.bomberman.entities.*;
+import com.tedomi2705.bomberman.entities.character.Bomber;
 import com.tedomi2705.bomberman.graphics.Sprite;
-import static com.tedomi2705.bomberman.entities.Movable.DIRECTION.*;
 import static com.tedomi2705.bomberman.EntitiesList.bomber;
 import static com.tedomi2705.bomberman.EntitiesList.entities;
 
