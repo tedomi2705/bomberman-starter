@@ -2,7 +2,6 @@ package com.tedomi2705.bomberman;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.tedomi2705.bomberman.entities.*;
 import com.tedomi2705.bomberman.entities.abstracts.Entity;
 import com.tedomi2705.bomberman.entities.character.Bomb;
 import com.tedomi2705.bomberman.entities.character.Bomber;

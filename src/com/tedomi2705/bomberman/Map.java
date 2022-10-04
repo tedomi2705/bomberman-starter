@@ -1,12 +1,13 @@
 package com.tedomi2705.bomberman;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import static com.tedomi2705.bomberman.EntitiesList.bomber;
+import static com.tedomi2705.bomberman.EntitiesList.bricks;
+import static com.tedomi2705.bomberman.EntitiesList.entities;
+import static com.tedomi2705.bomberman.EntitiesList.stillObjects;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import com.tedomi2705.bomberman.entities.*;
 import com.tedomi2705.bomberman.entities.abstracts.Entity;
 import com.tedomi2705.bomberman.entities.character.Bomber;
 import com.tedomi2705.bomberman.entities.enemies.Enemy1;
@@ -14,7 +15,6 @@ import com.tedomi2705.bomberman.entities.still.Brick;
 import com.tedomi2705.bomberman.entities.still.Grass;
 import com.tedomi2705.bomberman.entities.still.Wall;
 import com.tedomi2705.bomberman.graphics.Sprite;
-import static com.tedomi2705.bomberman.EntitiesList.*;
 
 public class Map {
     public static int WIDTH;
