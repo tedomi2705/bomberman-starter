@@ -1,6 +1,7 @@
 package com.tedomi2705.bomberman.entities.character;
 
 import static com.tedomi2705.bomberman.entities.abstracts.Movable.DIRECTION.*;
+import com.tedomi2705.bomberman.EntitiesList;
 import com.tedomi2705.bomberman.entities.abstracts.Movable;
 import com.tedomi2705.bomberman.entities.abstracts.Movable.DIRECTION;
 import com.tedomi2705.bomberman.graphics.Sprite;
@@ -12,6 +13,7 @@ public class Bomber extends Movable {
     private boolean leftPressed;
     private boolean rightPressed;
     private boolean spacePressed;
+    private int bombLimit = 1;
 
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
@@ -68,6 +70,9 @@ public class Bomber extends Movable {
         if (!moveUp && !moveDown && !moveLeft && !moveRight && !moveUpLeft && !moveUpRight
                 && !moveDownLeft && !moveDownRight) {
             setMoving(false);
+        }
+        if (spacePressed) {
+            placeBomb();
         }
         updateImage();
         animate();
@@ -197,4 +202,19 @@ public class Bomber extends Movable {
     public void setSpacePressed(boolean spacePressed) {
         this.spacePressed = spacePressed;
     }
+
+    public void placeBomb() {
+        int bombCount = EntitiesList.bombs.size();
+        if (bombCount < bombLimit) {
+            Bomb bomb = new Bomb(getGridX(), getGridY(), Sprite.bomb.getFxImage());
+            EntitiesList.bombs.add(bomb);
+            bombCount++;
+        }
+    }
+
+    public void increaseBombLimit() {
+        bombLimit++;
+    }
+
+
 }

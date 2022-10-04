@@ -51,4 +51,12 @@ public abstract class Entity {
     }
 
     public abstract void updateImage();
+
+    public int getGridX() {
+        return (this.x + Sprite.SCALED_SIZE / 2) / Sprite.SCALED_SIZE;
+    }
+
+    public int getGridY() {
+        return (this.y + Sprite.SCALED_SIZE / 2) / Sprite.SCALED_SIZE;
+    }
 }
