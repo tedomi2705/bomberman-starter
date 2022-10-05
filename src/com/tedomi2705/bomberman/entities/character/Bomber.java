@@ -1,6 +1,7 @@
 package com.tedomi2705.bomberman.entities.character;
 
 import static com.tedomi2705.bomberman.entities.abstracts.Movable.DIRECTION.*;
+import org.apache.logging.log4j.Logger;
 import com.tedomi2705.bomberman.EntitiesList;
 import com.tedomi2705.bomberman.entities.abstracts.Movable;
 import com.tedomi2705.bomberman.graphics.Sprite;
@@ -13,6 +14,7 @@ public class Bomber extends Movable {
     private boolean rightPressed;
     private boolean spacePressed;
     private int bombLimit = 1;
+    private static Logger logger = org.apache.logging.log4j.LogManager.getLogger(Bomber.class);
 
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
@@ -206,6 +208,7 @@ public class Bomber extends Movable {
         int bombCount = EntitiesList.bombs.size();
         if (bombCount < bombLimit) {
             Bomb bomb = new Bomb(getGridX(), getGridY(), Sprite.bomb.getFxImage());
+            logger.info("Bomb placed at (" + bomb.getGridX() + ";" + bomb.getGridY()+ ")");
             EntitiesList.bombs.add(bomb);
             bombCount++;
         }

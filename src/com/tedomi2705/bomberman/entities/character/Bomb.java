@@ -1,5 +1,6 @@
 package com.tedomi2705.bomberman.entities.character;
 
+import org.apache.logging.log4j.Logger;
 import com.tedomi2705.bomberman.EntitiesList;
 import com.tedomi2705.bomberman.Map;
 import com.tedomi2705.bomberman.entities.abstracts.Entity;
@@ -11,6 +12,7 @@ import javafx.scene.image.Image;
 public class Bomb extends Entity {
     public static final int TICKING_CYCLE = 90;
     public static final int EXPLODING_CYCLE = 20;
+    private static Logger logger = org.apache.logging.log4j.LogManager.getLogger(Bomb.class);
 
     int length = 2;
     int animationStep;
@@ -64,6 +66,7 @@ public class Bomb extends Entity {
         animationStep = 0;
 
         int sx = this.getGridX(), sy = this.getGridY();
+        logger.info("Bomb exploded at (" + sx + ";" + sy + ")");
 
         for (int i = 1; i < length; ++i) {
             int nx = sx;
