@@ -70,7 +70,7 @@ public class Map {
     public static boolean moveAble(int x, int y) {
 
         for (int k : collidingList[x][y]) {
-            if (!(map[k % WIDTH][k / WIDTH] instanceof Grass)) {
+            if (!(map[k / WIDTH][k % WIDTH] instanceof Grass)) {
                 return false;
             }
         }
@@ -94,62 +94,57 @@ public class Map {
         int levelId = scanner.nextInt();
         int numRow = scanner.nextInt();
         int numCol = scanner.nextInt();
-        map = new Entity[numRow][numCol];
+        map = new Entity[numCol][numRow];
         scanner.nextLine();
-        for (int i = 0; i < numRow; ++i) {
+        for (int j = 0; j < numRow; j++) {
             String s = scanner.nextLine();
-            for (int j = 0; j < numCol; ++j) {
+            for (int i = 0; i < numCol; i++) {
                 Entity object;
-                switch (s.charAt(j)) {
+                switch (s.charAt(i)) {
                     case '#' -> {
                         // TODO: Wall
-                        object = new Wall(j, i, Sprite.wall.getFxImage());
+                        object = new Wall(i, j, Sprite.wall.getFxImage());
                         stillObjects.add(object);
+                        System.err.print("#");
                     }
                     case '*', 'x', 'b', 's', 'f' -> {
                         // TODO: Brick
-                        object = new Grass(j, i, Sprite.grass.getFxImage());
+                        object = new Grass(i, j, Sprite.grass.getFxImage());
                         stillObjects.add(object);
-                        object = new Brick(j, i, Sprite.brick.getFxImage());
+                        object = new Brick(i, j, Sprite.brick.getFxImage());
                         bricks.add((Brick) object);
+                        System.err.print("*");
                     }
                     case 'p' -> {
-                        bomber = new Bomber(j, i, Sprite.player_right.getFxImage());
-                        object = new Grass(j, i, Sprite.grass.getFxImage());
+                        bomber = new Bomber(i, j, Sprite.player_right.getFxImage());
+                        object = new Grass(i, j, Sprite.grass.getFxImage());
                         stillObjects.add(object);
+                        System.err.print("p");
                     }
                     case '1' -> {
                         // TODO: Enemy 1
-                        object = new Grass(j, i, Sprite.grass.getFxImage());
+                        object = new Grass(i, j, Sprite.grass.getFxImage());
                         stillObjects.add(object);
-                        object = new Enemy1(j, i, Sprite.mob_dead1.getFxImage());
+                        object = new Enemy1(i, j, Sprite.mob_dead1.getFxImage());
                         entities.add(object);
+                        System.err.print("1");
                     }
                     case '2' -> {
                         // TODO: Enemy 2
-                        object = new Grass(j, i, Sprite.grass.getFxImage());
+                        object = new Grass(i, j, Sprite.grass.getFxImage());
                         stillObjects.add(object);
-                        object = new Enemy1(j, i, Sprite.mob_dead1.getFxImage());
+                        object = new Enemy1(i, j, Sprite.mob_dead1.getFxImage());
                         entities.add(object);
+                        System.err.print("2");
                     }
 
                     default -> {
-                        object = new Grass(j, i, Sprite.grass.getFxImage());
+                        object = new Grass(i, j, Sprite.grass.getFxImage());
                         stillObjects.add(object);
+                        System.err.print(" ");
                     }
                 }
                 map[i][j] = object;
-            }
-        }
-        for (int k = 0; k < numRow; k++) {
-            for (int l = 0; l < numCol; l++) {
-                if (map[k][l] instanceof Brick) {
-                    System.err.print("*");
-                } else if (map[k][l] instanceof Wall) {
-                    System.err.print("#");
-                } else {
-                    System.err.print(" ");
-                }
             }
             System.err.println();
         }
