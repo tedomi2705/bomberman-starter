@@ -3,7 +3,9 @@ package com.tedomi2705.bomberman.entities.character;
 import static com.tedomi2705.bomberman.entities.abstracts.Movable.DIRECTION.*;
 import org.apache.logging.log4j.Logger;
 import com.tedomi2705.bomberman.EntitiesList;
+import com.tedomi2705.bomberman.Map;
 import com.tedomi2705.bomberman.entities.abstracts.Movable;
+import com.tedomi2705.bomberman.entities.still.Grass;
 import com.tedomi2705.bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
 
@@ -13,7 +15,10 @@ public class Bomber extends Movable {
     private boolean leftPressed;
     private boolean rightPressed;
     private boolean spacePressed;
+
     private int bombLimit = 1;
+    private int bombLength = 2;
+
     private static Logger logger = org.apache.logging.log4j.LogManager.getLogger(Bomber.class);
 
     public Bomber(int x, int y, Image img) {
@@ -206,7 +211,7 @@ public class Bomber extends Movable {
 
     public void placeBomb() {
         int bombCount = EntitiesList.bombs.size();
-        if (bombCount < bombLimit) {
+        if (bombCount < bombLimit && isBombPlacable()) {
             Bomb bomb = new Bomb(getGridX(), getGridY(), Sprite.bomb.getFxImage());
             logger.info("Bomb placed at (" + bomb.getGridX() + ";" + bomb.getGridY()+ ")");
             EntitiesList.bombs.add(bomb);
@@ -214,9 +219,45 @@ public class Bomber extends Movable {
         }
     }
 
+    private boolean isBombPlacable() {
+        for (Bomb bomb : EntitiesList.bombs) {
+            if (bomb.getGridX() == getGridX() && bomb.getGridY() == getGridY()) {
+                return false;
+            }
+        }
+        return Map.getObjectAt(getGridX(), getGridY()) instanceof Grass;
+    }
+
     public void increaseBombLimit() {
         bombLimit++;
     }
 
+    public void increaseBombLength() {
+        bombLength++;
+    }
+
+    public void increaseSpeed() {
+        speed++;
+    }
+
+    public int getBombLimit() {
+        return bombLimit;
+    }
+
+    public void setBombLimit(int bombLimit) {
+        this.bombLimit = bombLimit;
+    }
+
+    public int getBombLength() {
+        return bombLength;
+    }
+
+    public void setBombLength(int bombLength) {
+        this.bombLength = bombLength;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
 
 }

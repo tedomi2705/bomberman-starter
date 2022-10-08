@@ -5,6 +5,7 @@ import com.tedomi2705.bomberman.EntitiesList;
 import com.tedomi2705.bomberman.Map;
 import com.tedomi2705.bomberman.entities.abstracts.Entity;
 import com.tedomi2705.bomberman.entities.still.Brick;
+import com.tedomi2705.bomberman.entities.still.Grass;
 import com.tedomi2705.bomberman.entities.still.Wall;
 import com.tedomi2705.bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
@@ -14,7 +15,7 @@ public class Bomb extends Entity {
     public static final int EXPLODING_CYCLE = 20;
     private static Logger logger = org.apache.logging.log4j.LogManager.getLogger(Bomb.class);
 
-    int length = 2;
+    int length;
     int animationStep;
     boolean exploded;
 
@@ -26,6 +27,16 @@ public class Bomb extends Entity {
     @Override
     public void update() {
         updateImage();
+        if (exploded) {
+            Map.setObjectAt(getGridX(), getGridY(),
+                    new Grass(this.getGridX(), this.getGridY(), Sprite.grass.getFxImage()));
+            return;
+        }
+        if (Math.abs(this.getGridX() - EntitiesList.bomber.getGridX()) > 1
+                || Math.abs(this.getGridY() - EntitiesList.bomber.getGridY()) > 1) {
+            Map.setObjectAt(getGridX(), getGridY(), this);
+        }
+
     }
 
     @Override
@@ -64,7 +75,7 @@ public class Bomb extends Entity {
     public void setExploded(boolean exploded) {
         this.exploded = true;
         animationStep = 0;
-
+        length = EntitiesList.bomber.getBombLength();
         int sx = this.getGridX(), sy = this.getGridY();
         logger.info("Bomb exploded at (" + sx + ";" + sy + ")");
 

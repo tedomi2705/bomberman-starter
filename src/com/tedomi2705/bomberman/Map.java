@@ -4,10 +4,12 @@ import static com.tedomi2705.bomberman.EntitiesList.bomber;
 import static com.tedomi2705.bomberman.EntitiesList.bricks;
 import static com.tedomi2705.bomberman.EntitiesList.entities;
 import static com.tedomi2705.bomberman.EntitiesList.stillObjects;
+import static com.tedomi2705.bomberman.EntitiesList.items;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import com.tedomi2705.bomberman.entities.Item;
 import com.tedomi2705.bomberman.entities.abstracts.Entity;
 import com.tedomi2705.bomberman.entities.character.Bomber;
 import com.tedomi2705.bomberman.entities.enemies.Enemy1;
@@ -107,13 +109,29 @@ public class Map {
                         stillObjects.add(object);
                         System.err.print("#");
                     }
-                    case '*', 'x', 'b', 's', 'f' -> {
+                    case '*' -> {
                         // TODO: Brick
                         object = new Grass(i, j, Sprite.grass.getFxImage());
                         stillObjects.add(object);
                         object = new Brick(i, j, Sprite.brick.getFxImage());
                         bricks.add((Brick) object);
                         System.err.print("*");
+                    }
+                    case 'x', 'b', 's', 'f' -> {
+                        object = new Grass(i, j, Sprite.grass.getFxImage());
+                        stillObjects.add(object);
+                        Item.ITEM_TYPE type = Item.ITEM_TYPE.FLAME_ITEM;
+                        switch (s.charAt(i)) {
+                            case 'x' -> type = Item.ITEM_TYPE.PORTAL;
+                            case 'b' -> type = Item.ITEM_TYPE.BOMB_ITEM;
+                            case 's' -> type = Item.ITEM_TYPE.SPEED_ITEM;
+                            case 'f' -> type = Item.ITEM_TYPE.FLAME_ITEM;
+                        }
+                        items.add(new Item(i, j, type));
+
+                        object = new Brick(i, j, Sprite.brick.getFxImage());
+                        bricks.add((Brick) object);
+
                     }
                     case 'p' -> {
                         bomber = new Bomber(i, j, Sprite.player_right.getFxImage());
@@ -153,6 +171,5 @@ public class Map {
         initializeCollidingList();
 
     }
-
 
 }
