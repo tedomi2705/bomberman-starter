@@ -1,5 +1,6 @@
 package com.tedomi2705.bomberman.entities.character;
 
+import com.tedomi2705.bomberman.Map;
 import com.tedomi2705.bomberman.entities.abstracts.Entity;
 import com.tedomi2705.bomberman.graphics.Sprite;
 import javafx.scene.image.Image;
@@ -76,5 +77,9 @@ public class Explosion extends Entity {
             default:
                 return null;
         }
+    }
+
+    public boolean isTouching(Entity entity) {
+        return Map.isTouching(this.getX(), this.getY(), entity.getX(), entity.getY());
     }
 }

@@ -29,6 +29,14 @@ public class Bomber extends Movable {
 
     @Override
     public void update() {
+        if (isTouchingExplosion()) {
+            setDead(true);
+            logger.info("Player died");
+        }
+        // if (dead) {
+        // updateImage();
+        // return;
+        // }
         final boolean moveUp = upPressed && (!upPressed || !downPressed);
         final boolean moveDown = downPressed && (!upPressed || !downPressed);
         final boolean moveLeft = leftPressed && (!leftPressed || !rightPressed);
@@ -86,6 +94,17 @@ public class Bomber extends Movable {
 
     @Override
     public void updateImage() {
+        if(isFullyDead()){
+            setImg(null);
+                    
+            return;
+        }
+        if (dead) {
+            setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2,
+                    Sprite.player_dead3, this.animationStep, Sprite.ANIMATING_CYCLE * 3)
+                    .getFxImage());
+            return;
+        }
         Sprite sprite;
         switch (getDirection()) {
             case LEFT -> {
@@ -213,7 +232,7 @@ public class Bomber extends Movable {
         int bombCount = EntitiesList.bombs.size();
         if (bombCount < bombLimit && isBombPlacable()) {
             Bomb bomb = new Bomb(getGridX(), getGridY(), Sprite.bomb.getFxImage());
-            logger.info("Bomb placed at (" + bomb.getGridX() + ";" + bomb.getGridY()+ ")");
+            logger.info("Bomb placed at (" + bomb.getGridX() + ";" + bomb.getGridY() + ")");
             EntitiesList.bombs.add(bomb);
             bombCount++;
         }
@@ -259,5 +278,16 @@ public class Bomber extends Movable {
     public int getSpeed() {
         return speed;
     }
+
+    @Override
+    public void setDead(boolean dead) {
+        // TODO Auto-generated method stub
+        super.setDead(dead);
+        if (dead) {
+            deadTime = 24;
+        }
+
+    }
+
 
 }

@@ -1,6 +1,9 @@
 package com.tedomi2705.bomberman.entities.abstracts;
 
+import com.tedomi2705.bomberman.EntitiesList;
 import com.tedomi2705.bomberman.Map;
+import com.tedomi2705.bomberman.entities.character.Bomb;
+import com.tedomi2705.bomberman.entities.character.Explosion;
 import javafx.scene.image.Image;
 
 public abstract class Movable extends Entity {
@@ -13,6 +16,9 @@ public abstract class Movable extends Entity {
     protected int speed;
     protected boolean isMoving;
     protected DIRECTION direction;
+
+    protected boolean dead;
+    protected int deadTime;
 
     protected int animationStep;
 
@@ -85,9 +91,38 @@ public abstract class Movable extends Entity {
         } else {
             this.animationStep = this.animationStep + 1;
         }
+        if (deadTime > 0) {
+            deadTime--;
+        }
     }
 
     protected boolean moveable(int x, int y) {
         return Map.moveAble(x, y);
+    }
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public boolean isFullyDead() {
+        return isDead() && deadTime == 0;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    protected boolean isTouchingExplosion() {
+        for (Bomb bomb : EntitiesList.bombs) {
+            if (bomb.isExploded() && bomb.isTouching(this)) {
+                return true;
+            }
+        }
+        for (Explosion explosion : EntitiesList.explosions) {
+            if (explosion.isTouching(this)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -135,4 +135,8 @@ public class Bomb extends Entity {
     public boolean isFullyExploded() {
         return isExploded() && animationStep >= EXPLODING_CYCLE;
     }
+
+    public boolean isTouching(Entity entity) {
+        return Map.isTouching(this.getX(), this.getY(), entity.getX(), entity.getY());
+    }
 }

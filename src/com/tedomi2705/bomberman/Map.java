@@ -172,4 +172,10 @@ public class Map {
 
     }
 
+    public static boolean isTouching(int x, int y, int x1, int y1) {
+        return Math.max(0, Math.min(x, x1) + Sprite.SCALED_SIZE - Math.max(x, x1))
+                * Math.max(0, Math.min(y, y1) + Sprite.SCALED_SIZE - Math.max(y, y1)) > OFFSET
+                        * Sprite.SCALED_SIZE;
+    }
+
 }
