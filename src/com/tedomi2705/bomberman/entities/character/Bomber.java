@@ -31,7 +31,6 @@ public class Bomber extends Movable {
     public void update() {
         if (isTouchingExplosion()) {
             setDead(true);
-            logger.info("Player died");
         }
         // if (dead) {
         // updateImage();
@@ -282,7 +281,10 @@ public class Bomber extends Movable {
     @Override
     public void setDead(boolean dead) {
         // TODO Auto-generated method stub
-        super.setDead(dead);
+        if(!this.dead){
+            logger.info("Player died");
+            super.setDead(dead);
+        }
         if (dead) {
             deadTime = 24;
         }
