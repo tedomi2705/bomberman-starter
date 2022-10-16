@@ -17,30 +17,25 @@ public class Brick extends Entity {
     @Override
     public void update() {
         updateImage();
-        // TODO Auto-generated method stub
 
     }
 
 
     @Override
     public void updateImage() {
-        if (isFullyDestroyed()) return;
+        if (isFullyDestroyed())
+            return;
         if (isDestroyed()) {
-            this.setImg(
-                Sprite.movingSprite(
-                    Sprite.brick_exploded,
-                    Sprite.brick_exploded1,
-                    Sprite.brick_exploded2,
-                    animationStep,
-                    Sprite.ANIMATING_CYCLE
-                ).getFxImage()
-            );
+            this.setImg(Sprite
+                    .movingSprite(Sprite.brick_exploded, Sprite.brick_exploded1,
+                            Sprite.brick_exploded2, animationStep, Sprite.ANIMATING_CYCLE)
+                    .getFxImage());
             animationStep--;
             if (animationStep == 0) {
-                Map.setObjectAt(this.getGridX(), this.getGridY(), new Grass(this.getGridX(), this.getGridY(), Sprite.grass.getFxImage()));
+                Map.setObjectAt(this.getGridX(), this.getGridY(),
+                        new Grass(this.getGridX(), this.getGridY(), Sprite.grass.getFxImage()));
             }
         }
-        // TODO Auto-generated method stub
 
     }
 

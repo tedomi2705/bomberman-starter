@@ -33,8 +33,6 @@ public class Item extends Entity {
                 break;
         }
         this.type = type;
-
-        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -67,8 +65,6 @@ public class Item extends Entity {
             this.setEaten(true);
             this.setImg(null);
         }
-        // TODO Auto-generated method stub
-
     }
 
     @Override

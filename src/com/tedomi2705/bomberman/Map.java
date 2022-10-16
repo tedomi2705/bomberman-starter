@@ -104,13 +104,11 @@ public class Map {
                 Entity object;
                 switch (s.charAt(i)) {
                     case '#' -> {
-                        // TODO: Wall
                         object = new Wall(i, j, Sprite.wall.getFxImage());
                         stillObjects.add(object);
                         System.err.print("#");
                     }
                     case '*' -> {
-                        // TODO: Brick
                         object = new Grass(i, j, Sprite.grass.getFxImage());
                         stillObjects.add(object);
                         object = new Brick(i, j, Sprite.brick.getFxImage());

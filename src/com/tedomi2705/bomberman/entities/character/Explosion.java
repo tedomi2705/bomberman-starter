@@ -13,7 +13,6 @@ public class Explosion extends Entity {
     public Explosion(int xUnit, int yUnit, Image img, EXPLOSION_DIRECTION direction) {
         super(xUnit, yUnit, img);
         this.direction = direction;
-        // TODO Auto-generated constructor stub
     }
 
     public enum EXPLOSION_DIRECTION {
@@ -26,13 +25,11 @@ public class Explosion extends Entity {
     @Override
     public void update() {
         updateImage();
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void updateImage() {
-        // TODO Auto-generated method stub
         if (isExploded()) {
             return;
         }

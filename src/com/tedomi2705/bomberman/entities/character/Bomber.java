@@ -93,9 +93,8 @@ public class Bomber extends Movable {
 
     @Override
     public void updateImage() {
-        if(isFullyDead()){
+        if (isFullyDead()) {
             setImg(null);
-                    
             return;
         }
         if (dead) {
@@ -280,8 +279,7 @@ public class Bomber extends Movable {
 
     @Override
     public void setDead(boolean dead) {
-        // TODO Auto-generated method stub
-        if(!this.dead){
+        if (!this.dead) {
             logger.info("Player died");
             super.setDead(dead);
         }
