@@ -56,7 +56,6 @@ public class BombermanGame extends Application {
         timer.start();
 
 
-        bomber = new Bomber(1, 1, Sprite.player_right.getFxImage());
         // Handle input
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -100,6 +99,7 @@ public class BombermanGame extends Application {
                 
             }
         });
+        bomber = new Bomber(1, 1, Sprite.player_right.getFxImage());
         entities.add(bomber);
     }
 
