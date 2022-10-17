@@ -12,12 +12,20 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class BombermanGame extends Application {
 
     private GraphicsContext gc;
     private Canvas canvas;
+
+    private int score = 0;
+    private Text scoreText = new Text("SCORE: " + score);
+
 
 
     public static void main(String[] args) {
@@ -28,7 +36,7 @@ public class BombermanGame extends Application {
     public void start(Stage stage) {
         // Tao Canvas
         Map.readMap();
-        canvas = new Canvas(Sprite.SCALED_SIZE * Map.HEIGHT, Sprite.SCALED_SIZE * Map.WIDTH);
+        canvas = new Canvas(Sprite.SCALED_SIZE * Map.HEIGHT, Sprite.SCALED_SIZE * (Map.WIDTH + 1));
         gc = canvas.getGraphicsContext2D();
 
         // Tao root container
@@ -56,7 +64,7 @@ public class BombermanGame extends Application {
         // Handle input
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
-            public void handle(KeyEvent event){
+            public void handle(KeyEvent event) {
                 if (event.getCode().toString().equals("RIGHT")) {
                     bomber.setRightPressed(true);
                 }
@@ -93,15 +101,23 @@ public class BombermanGame extends Application {
                 if (event.getCode().toString().equals("SPACE")) {
                     bomber.setSpacePressed(false);
                 }
-                
+
             }
         });
+        // score
+        scoreText.setFont(Font.font("Berlin Sans FB Demi Bold", FontWeight.BOLD, 25));
+        scoreText.setFill(Color.AQUA);
+        scoreText.setX(/* Map.WIDTH * Sprite.SCALED_SIZE - */ 200);
+        scoreText.setY(Map.WIDTH * (Sprite.SCALED_SIZE + 1) + Sprite.SCALED_SIZE / 2);
+        System.err.println("text position: " + scoreText.getX() + " " + scoreText.getY());
+        root.getChildren().add(scoreText);
         bomber = new Bomber(1, 1, Sprite.player_right.getFxImage());
         entities.add(bomber);
     }
 
     public void update() {
         EntitiesList.update();
+        scoreText.setText("SCORE: " + score);
     }
 
     public void render() {
