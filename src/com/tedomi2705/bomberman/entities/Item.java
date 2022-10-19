@@ -42,7 +42,8 @@ public class Item extends Entity {
             return;
 
         if (bomber.getGridX() == this.getGridX() && bomber.getGridY() == this.getGridY()) {
-            Sound.playSound(Sound.item);
+            if (type != ITEM_TYPE.PORTAL)
+                Sound.playSound(Sound.item);
             switch (type) {
                 case BOMB_ITEM -> {
                     bomber.increaseBombLimit();
