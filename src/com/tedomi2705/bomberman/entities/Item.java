@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.tedomi2705.bomberman.entities.abstracts.Entity;
 import com.tedomi2705.bomberman.graphics.Sprite;
+import com.tedomi2705.bomberman.sound.Sound;
 
 public class Item extends Entity {
     public static enum ITEM_TYPE {
@@ -41,6 +42,7 @@ public class Item extends Entity {
             return;
 
         if (bomber.getGridX() == this.getGridX() && bomber.getGridY() == this.getGridY()) {
+            Sound.playSound(Sound.item);
             switch (type) {
                 case BOMB_ITEM -> {
                     bomber.increaseBombLimit();

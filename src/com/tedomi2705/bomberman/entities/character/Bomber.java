@@ -7,6 +7,7 @@ import com.tedomi2705.bomberman.Map;
 import com.tedomi2705.bomberman.entities.abstracts.Movable;
 import com.tedomi2705.bomberman.entities.still.Grass;
 import com.tedomi2705.bomberman.graphics.Sprite;
+import com.tedomi2705.bomberman.sound.Sound;
 import javafx.scene.image.Image;
 
 public class Bomber extends Movable {

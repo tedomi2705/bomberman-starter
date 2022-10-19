@@ -8,6 +8,7 @@ import com.tedomi2705.bomberman.entities.still.Brick;
 import com.tedomi2705.bomberman.entities.still.Grass;
 import com.tedomi2705.bomberman.entities.still.Wall;
 import com.tedomi2705.bomberman.graphics.Sprite;
+import com.tedomi2705.bomberman.sound.Sound;
 import javafx.scene.image.Image;
 
 public class Bomb extends Entity {
@@ -78,7 +79,7 @@ public class Bomb extends Entity {
         length = EntitiesList.bomber.getBombLength();
         int sx = this.getGridX(), sy = this.getGridY();
         logger.info("Bomb exploded at (" + sx + ";" + sy + ")");
-
+        Sound.playSound(Sound.explode);
         for (int i = 1; i < length; ++i) {
             int nx = sx;
             int ny = sy - i;
