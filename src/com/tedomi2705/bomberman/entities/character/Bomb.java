@@ -3,12 +3,12 @@ package com.tedomi2705.bomberman.entities.character;
 import org.apache.logging.log4j.Logger;
 import com.tedomi2705.bomberman.EntitiesList;
 import com.tedomi2705.bomberman.Map;
+import com.tedomi2705.bomberman.Sound;
 import com.tedomi2705.bomberman.entities.abstracts.Entity;
 import com.tedomi2705.bomberman.entities.still.Brick;
 import com.tedomi2705.bomberman.entities.still.Grass;
 import com.tedomi2705.bomberman.entities.still.Wall;
 import com.tedomi2705.bomberman.graphics.Sprite;
-import com.tedomi2705.bomberman.sound.Sound;
 import javafx.scene.image.Image;
 
 public class Bomb extends Entity {

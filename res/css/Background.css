@@ -1,0 +1,39 @@
+.bg {
+    -fx-background-image: url("../menu/main_menu.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100% 100%;
+    -fx-background-position: center center;
+    -fx-background-color: #412c17;
+}
+
+.label {
+    -fx-font-family: "Berlin Sans FB Demi";
+    -fx-font-size: 44px;
+    -fx-text-fill: pink;
+}
+
+.txt {
+    -fx-font-family: "Berlin Sans FB Demi";
+    -fx-font-size: 25px;
+    -fx-text-fill: pink;
+}
+
+.btn {
+    -fx-background-image : url("../menu/button2.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100% 100%;
+    -fx-background-position: center center;
+    -fx-padding: 0 0 20 0;
+    -fx-font-family: "Berlin Sans FB Demi";
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 35px;
+    -fx-text-fill: #ffffff;
+}
+
+.btn:hover {
+    -fx-cursor: hand;
+    -fx-background-image : url("../menu/button1.png");
+    -fx-text-fill: #ffffff;
+}
+

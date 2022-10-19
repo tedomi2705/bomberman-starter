@@ -3,9 +3,9 @@ package com.tedomi2705.bomberman.entities;
 import static com.tedomi2705.bomberman.EntitiesList.bomber;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.tedomi2705.bomberman.Sound;
 import com.tedomi2705.bomberman.entities.abstracts.Entity;
 import com.tedomi2705.bomberman.graphics.Sprite;
-import com.tedomi2705.bomberman.sound.Sound;
 
 public class Item extends Entity {
     public static enum ITEM_TYPE {

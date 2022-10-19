@@ -79,7 +79,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>bomberman/com.tedomi2705.bomberman.BombermanGame</mainClass>
+                            <mainClass>bomberman/com.tedomi2705.bomberman.Home</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -92,7 +92,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>bomberman/com.tedomi2705.bomberman.BombermanGame</mainClass>
+                            <mainClass>bomberman/com.tedomi2705.bomberman.Home</mainClass>
                         </configuration>
                     </execution>
                 </executions>

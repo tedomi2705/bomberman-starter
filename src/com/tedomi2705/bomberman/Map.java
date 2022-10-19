@@ -48,6 +48,8 @@ public class Map {
     private static void initializeCollidingList() {
         int numRow = HEIGHT * Sprite.SCALED_SIZE;
         int numCol = WIDTH * Sprite.SCALED_SIZE;
+        System.err.println("Map.initializeCollidingList()");
+        System.err.println("Map size: " + numRow + " " + numCol);
         collidingList = new ArrayList[numRow][numCol];
         for (int i = 0; i < numRow; i++) {
             for (int j = 0; j < numCol; j++) {
