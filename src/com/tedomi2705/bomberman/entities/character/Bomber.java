@@ -9,6 +9,7 @@ import com.tedomi2705.bomberman.entities.still.Grass;
 import com.tedomi2705.bomberman.graphics.Sprite;
 import com.tedomi2705.bomberman.sound.Sound;
 import javafx.scene.image.Image;
+import javafx.scene.media.MediaPlayer;
 
 public class Bomber extends Movable {
     private boolean upPressed;
@@ -22,14 +23,26 @@ public class Bomber extends Movable {
 
     private static Logger logger = org.apache.logging.log4j.LogManager.getLogger(Bomber.class);
 
+    private MediaPlayer movingPlayer = new MediaPlayer(Sound.move);
+
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
+        movingPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        movingPlayer.setVolume(3.0);
+        movingPlayer.setRate(3.0);
         this.setMoving(false);
         this.setDirection(DIRECTION.STOP);
     }
 
     @Override
     public void update() {
+        if (isMoving) {
+            if(movingPlayer.getStatus() != MediaPlayer.Status.PLAYING) {
+                movingPlayer.play();
+            }
+        } else {
+            movingPlayer.stop();
+        }
         if (isTouchingExplosion()) {
             setDead(true);
         }
