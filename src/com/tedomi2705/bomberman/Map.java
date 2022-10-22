@@ -16,6 +16,7 @@ import com.tedomi2705.bomberman.entities.abstracts.Entity;
 import com.tedomi2705.bomberman.entities.abstracts.Movable;
 import com.tedomi2705.bomberman.entities.character.Bomber;
 import com.tedomi2705.bomberman.entities.enemies.Balloom;
+import com.tedomi2705.bomberman.entities.enemies.Doll;
 import com.tedomi2705.bomberman.entities.enemies.Oneal;
 import com.tedomi2705.bomberman.entities.enemies.Ovape;
 import com.tedomi2705.bomberman.entities.still.Brick;
@@ -40,7 +41,7 @@ public class Map {
     // #region CollidingList
     private static List<Integer>[][] collidingList;
 
-    public static final int OFFSET = 2;
+    public static final int OFFSET = 0;
 
     public static boolean isColliding(int x, int y, int x1, int y1) {
         return Math.max(0,
@@ -170,6 +171,13 @@ public class Map {
                         entities.add(ovape);
                         System.err.print("3");
                     }
+                    case '4' -> {
+                        object = new Grass(i, j, Sprite.grass.getFxImage());
+                        stillObjects.add(object);
+                        Doll doll = new Doll(i, j, null);
+                        entities.add(doll);
+                        System.err.print("4");
+                    }
 
                     default -> {
                         object = new Grass(i, j, Sprite.grass.getFxImage());
@@ -189,7 +197,7 @@ public class Map {
 
     public static boolean isTouching(int x, int y, int x1, int y1) {
         return Math.max(0, Math.min(x, x1) + Sprite.SCALED_SIZE - Math.max(x, x1))
-                * Math.max(0, Math.min(y, y1) + Sprite.SCALED_SIZE - Math.max(y, y1)) > OFFSET
+                * Math.max(0, Math.min(y, y1) + Sprite.SCALED_SIZE - Math.max(y, y1)) > 2
                         * Sprite.SCALED_SIZE;
     }
 
