@@ -21,6 +21,16 @@ public class EntitiesList {
     public static List<Explosion> explosions = new ArrayList<>();
     public static List<Item> items = new ArrayList<>();
 
+    public static void clear() {
+        entities.clear();
+        stillObjects.clear();
+        bricks.clear();
+        bombs.clear();
+        explosions.clear();
+        items.clear();
+        bomber = null;
+    }
+
     public static void update() {
         bomber.update();
         entities.forEach(Entity::update);
@@ -30,7 +40,11 @@ public class EntitiesList {
         bombs.removeIf(Bomb::isFullyExploded);
         explosions.removeIf(Explosion::isExploded);
         bricks.removeIf(Brick::isFullyDestroyed);
-        items.forEach(Item::update);
+        try {
+            items.forEach(Item::update);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
         items.removeIf(Item::isEaten);
         entities.removeIf(Movable::isFullyDead);
     }

@@ -2,6 +2,7 @@ package com.tedomi2705.bomberman.entities.character;
 
 import static com.tedomi2705.bomberman.entities.abstracts.Movable.DIRECTION.*;
 import org.apache.logging.log4j.Logger;
+import com.tedomi2705.bomberman.BombermanGame;
 import com.tedomi2705.bomberman.EntitiesList;
 import com.tedomi2705.bomberman.Map;
 import com.tedomi2705.bomberman.Sound;
@@ -297,6 +298,7 @@ public class Bomber extends Movable {
     public void setDead(boolean dead) {
         if (!this.dead) {
             logger.info("Player died");
+            BombermanGame.gameOverText.setVisible(true);
             super.setDead(dead);
         }
         if (dead) {

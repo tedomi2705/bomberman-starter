@@ -3,8 +3,12 @@ package com.tedomi2705.bomberman.entities;
 import static com.tedomi2705.bomberman.EntitiesList.bomber;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.tedomi2705.bomberman.BombermanGame;
+import com.tedomi2705.bomberman.EntitiesList;
+import com.tedomi2705.bomberman.Map;
 import com.tedomi2705.bomberman.Sound;
 import com.tedomi2705.bomberman.entities.abstracts.Entity;
+import com.tedomi2705.bomberman.entities.character.Bomber;
 import com.tedomi2705.bomberman.graphics.Sprite;
 
 public class Item extends Entity {
@@ -62,6 +66,21 @@ public class Item extends Entity {
                 }
                 case PORTAL -> {
                     // TODO Portal
+                    if (EntitiesList.entities.isEmpty()) {
+                        logger.info("Bomber picked up a portal item");
+                        logger.info("Bomber is now in the next level");
+                        EntitiesList.bomber.setMoving(false);
+                        EntitiesList.bomber.update();
+                        if(BombermanGame.level == BombermanGame.LEVEL_AMOUNT) {
+                            BombermanGame.level = 1;
+                        } else {
+                            BombermanGame.level++;
+                        }
+                        EntitiesList.bomber = new Bomber(1, 1, Sprite.player_right.getFxImage());
+                        EntitiesList.entities.add(EntitiesList.bomber);
+                        Sound.playSound(Sound.lvlup);
+                        Map.readMap(BombermanGame.level);
+                    }
                     return;
                 }
             }

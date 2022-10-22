@@ -103,11 +103,12 @@ public class Map {
     }
     // #endregion
 
-    public static void readMap() {
-
+    public static void readMap(int level) {
+        EntitiesList.clear();
         Scanner scanner = null;
         try {
-            InputStream is = Map.class.getResourceAsStream("/levels/Level1.txt");
+            
+            InputStream is = Map.class.getResourceAsStream(String.format("/levels/Level%d.txt", level));
             scanner = new Scanner(is);
         } catch (Exception e) {
             e.printStackTrace();

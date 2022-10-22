@@ -1,6 +1,7 @@
 package com.tedomi2705.bomberman.controller;
 
 import com.tedomi2705.bomberman.BombermanGame;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;

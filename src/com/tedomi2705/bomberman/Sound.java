@@ -15,6 +15,7 @@ public class Sound {
     public static Media menuselect = new Media(Sound.class.getResource("/sound/menuselect.mp3").toString());
     public static Media move = new Media(Sound.class.getResource("/sound/move.mp3").toString());
     public static Media gameover = new Media(Sound.class.getResource("/sound/gameover.mp3").toString());
+    public static Media lvlup = new Media(Sound.class.getResource("/sound/lvlup.mp3").toString());
 
     public static void playBackground(Media media) {
         backgroundPlayer = new MediaPlayer(media);
