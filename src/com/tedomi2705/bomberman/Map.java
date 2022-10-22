@@ -17,6 +17,7 @@ import com.tedomi2705.bomberman.entities.abstracts.Movable;
 import com.tedomi2705.bomberman.entities.character.Bomber;
 import com.tedomi2705.bomberman.entities.enemies.Balloom;
 import com.tedomi2705.bomberman.entities.enemies.Doll;
+import com.tedomi2705.bomberman.entities.enemies.Kondoria;
 import com.tedomi2705.bomberman.entities.enemies.Oneal;
 import com.tedomi2705.bomberman.entities.enemies.Ovape;
 import com.tedomi2705.bomberman.entities.still.Brick;
@@ -81,6 +82,17 @@ public class Map {
 
         for (int k : collidingList[x][y]) {
             if (!(map[k / WIDTH][k % WIDTH] instanceof Grass)) {
+                return false;
+            }
+        }
+
+
+        return true;
+    }
+    public static boolean kondoriaMoveAble(int x, int y) {
+
+        for (int k : collidingList[x][y]) {
+            if (!(map[k / WIDTH][k % WIDTH] instanceof Grass || map[k / WIDTH][k % WIDTH] instanceof Brick)) {
                 return false;
             }
         }
@@ -177,6 +189,13 @@ public class Map {
                         Doll doll = new Doll(i, j, null);
                         entities.add(doll);
                         System.err.print("4");
+                    }
+                    case '5' -> {
+                        object = new Grass(i, j, Sprite.grass.getFxImage());
+                        stillObjects.add(object);
+                        Kondoria kondoria = new Kondoria(i, j, null);
+                        entities.add(kondoria);
+                        System.err.print("5");
                     }
 
                     default -> {
