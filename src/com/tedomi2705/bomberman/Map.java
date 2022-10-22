@@ -20,6 +20,7 @@ import com.tedomi2705.bomberman.entities.enemies.Doll;
 import com.tedomi2705.bomberman.entities.enemies.Kondoria;
 import com.tedomi2705.bomberman.entities.enemies.Oneal;
 import com.tedomi2705.bomberman.entities.enemies.Ovape;
+import com.tedomi2705.bomberman.entities.enemies.Pontan;
 import com.tedomi2705.bomberman.entities.still.Brick;
 import com.tedomi2705.bomberman.entities.still.Grass;
 import com.tedomi2705.bomberman.entities.still.Wall;
@@ -196,6 +197,13 @@ public class Map {
                         Kondoria kondoria = new Kondoria(i, j, null);
                         entities.add(kondoria);
                         System.err.print("5");
+                    }
+                    case '6' -> {
+                        object = new Grass(i, j, Sprite.grass.getFxImage());
+                        stillObjects.add(object);
+                        Pontan pontan = new Pontan(i, j, null);
+                        entities.add(pontan);
+                        System.err.print("6");
                     }
 
                     default -> {
