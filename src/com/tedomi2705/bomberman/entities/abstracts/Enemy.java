@@ -45,11 +45,11 @@ public abstract class Enemy extends Movable {
 
     @Override
     public void updateImage() {
-        if (direction == DIRECTION.LEFT) {
+        if (direction == DIRECTION.LEFT || direction == DIRECTION.UPLEFT || direction == DIRECTION.DOWNLEFT) {
             movingAnimations[0] = left;
             movingAnimations[1] = left1;
             movingAnimations[2] = left2;
-        } else if (direction == DIRECTION.RIGHT) {
+        } else if (direction == DIRECTION.RIGHT || direction == DIRECTION.UPRIGHT || direction == DIRECTION.DOWNRIGHT) {
             movingAnimations[0] = right;
             movingAnimations[1] = right1;
             movingAnimations[2] = right2;
@@ -61,6 +61,22 @@ public abstract class Enemy extends Movable {
             case DOWN -> this.moveDown();
             case LEFT -> this.moveLeft();
             case RIGHT -> this.moveRight();
+            case UPLEFT -> {
+                this.moveUp();
+                this.moveLeft();
+            }
+            case UPRIGHT -> {
+                this.moveUp();
+                this.moveRight();
+            }
+            case DOWNLEFT -> {
+                this.moveDown();
+                this.moveLeft();
+            }
+            case DOWNRIGHT -> {
+                this.moveDown();
+                this.moveRight();
+            }
         }
     }
 
