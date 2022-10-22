@@ -16,6 +16,7 @@ import com.tedomi2705.bomberman.entities.abstracts.Entity;
 import com.tedomi2705.bomberman.entities.abstracts.Movable;
 import com.tedomi2705.bomberman.entities.character.Bomber;
 import com.tedomi2705.bomberman.entities.enemies.Balloom;
+import com.tedomi2705.bomberman.entities.enemies.Oneal;
 import com.tedomi2705.bomberman.entities.still.Brick;
 import com.tedomi2705.bomberman.entities.still.Grass;
 import com.tedomi2705.bomberman.entities.still.Wall;
@@ -157,6 +158,8 @@ public class Map {
                         // TODO: Enemy 2
                         object = new Grass(i, j, Sprite.grass.getFxImage());
                         stillObjects.add(object);
+                        Oneal oneal = new Oneal(i, j, null);
+                        entities.add(oneal);
                         System.err.print("2");
                     }
 
