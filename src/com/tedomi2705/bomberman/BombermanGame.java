@@ -23,10 +23,13 @@ public class BombermanGame extends Application {
     private GraphicsContext gc;
     private Canvas canvas;
 
-    private int score = 0;
+    private static int score = 0;
     private Text scoreText = new Text("SCORE: " + score);
+    private int bFSCoolDown = 60;
 
-
+    public static void increaseScore(int amount) {
+        score += amount;
+    }
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -106,17 +109,23 @@ public class BombermanGame extends Application {
         });
         // score
         scoreText.setFont(Font.font("Berlin Sans FB Demi Bold", FontWeight.BOLD, 25));
-        scoreText.setFill(Color.AQUA);
-        scoreText.setX(/* Map.WIDTH * Sprite.SCALED_SIZE - */ 200);
-        scoreText.setY(Map.WIDTH * (Sprite.SCALED_SIZE + 1) + Sprite.SCALED_SIZE / 2);
+        scoreText.setFill(Color.BLACK);
+        scoreText.setX(/* Map.WIDTH * Sprite.SCALED_SIZE - */ 100);
+        scoreText.setY(Map.WIDTH * (Sprite.SCALED_SIZE + 1) + Sprite.SCALED_SIZE / 2 - 5);
         System.err.println("text position: " + scoreText.getX() + " " + scoreText.getY());
         root.getChildren().add(scoreText);
         bomber = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        entities.add(bomber);
+        // entities.add(bomber);
     }
 
     public void update() {
         EntitiesList.update();
+        if (bFSCoolDown > 0) {
+            bFSCoolDown--;
+        } else {
+            Map.BFS(bomber.getGridX(), bomber.getGridY());
+            bFSCoolDown = 60;
+        }
         scoreText.setText("SCORE: " + score);
     }
 

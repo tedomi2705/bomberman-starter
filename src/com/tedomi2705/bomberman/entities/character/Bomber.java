@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import com.tedomi2705.bomberman.EntitiesList;
 import com.tedomi2705.bomberman.Map;
 import com.tedomi2705.bomberman.Sound;
+import com.tedomi2705.bomberman.entities.abstracts.Entity;
 import com.tedomi2705.bomberman.entities.abstracts.Movable;
 import com.tedomi2705.bomberman.entities.still.Grass;
 import com.tedomi2705.bomberman.graphics.Sprite;
@@ -37,7 +38,7 @@ public class Bomber extends Movable {
     @Override
     public void update() {
         if (isMoving) {
-            if(movingPlayer.getStatus() != MediaPlayer.Status.PLAYING) {
+            if (movingPlayer.getStatus() != MediaPlayer.Status.PLAYING) {
                 movingPlayer.play();
             }
         } else {
@@ -46,10 +47,11 @@ public class Bomber extends Movable {
         if (isTouchingExplosion()) {
             setDead(true);
         }
-        // if (dead) {
-        // updateImage();
-        // return;
-        // }
+        for (Entity entity : EntitiesList.entities) {
+            if (entity.getGridX() == this.getGridX() && entity.getGridY() == this.getGridY()) {
+                setDead(true);
+            }
+        }
         final boolean moveUp = upPressed && (!upPressed || !downPressed);
         final boolean moveDown = downPressed && (!upPressed || !downPressed);
         final boolean moveLeft = leftPressed && (!leftPressed || !rightPressed);

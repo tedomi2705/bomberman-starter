@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.tedomi2705.bomberman.entities.Item;
 import com.tedomi2705.bomberman.entities.abstracts.Entity;
+import com.tedomi2705.bomberman.entities.abstracts.Movable;
 import com.tedomi2705.bomberman.entities.character.Bomb;
 import com.tedomi2705.bomberman.entities.character.Bomber;
 import com.tedomi2705.bomberman.entities.character.Explosion;
@@ -13,7 +14,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class EntitiesList {
     public static Bomber bomber;
-    public static List<Entity> entities = new ArrayList<>();
+    public static List<Movable> entities = new ArrayList<>();
     public static List<Entity> stillObjects = new ArrayList<>();
     public static List<Brick> bricks = new ArrayList<>();
     public static List<Bomb> bombs = new ArrayList<>();
@@ -31,6 +32,7 @@ public class EntitiesList {
         bricks.removeIf(Brick::isFullyDestroyed);
         items.forEach(Item::update);
         items.removeIf(Item::isEaten);
+        entities.removeIf(Movable::isFullyDead);
     }
 
     public static void render(GraphicsContext gc, Canvas canvas) {
